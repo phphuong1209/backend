@@ -1,0 +1,9 @@
+.ON img {
+    display: none;
+}
+.ON img.active {
+    display: block;
+}
+.OFF img.active {
+    display: block;
+}

@@ -1,9 +1,9 @@
-const scoButton = document.querySelectorAll("#frontend button");
-const fronHienThi = document.querySelector("#box-score-home");
+const frontShow = document.querySelector("#box-score-home");
+const buTTon = document.querySelectorAll("#frontend button");
 let acc = 0;
-scoButton.forEach((argu) => {
-  argu.addEventListener("click", function () {
-    acc += parseInt(argu.value);
-    fronHienThi.innerHTML = acc.toString().padStart(2, "0");
+buTTon.forEach((item) => {
+  item.addEventListener("click", function () {
+    acc += parseInt(item.value);
+    frontShow.innerHTML = acc.toString().padStart(2, "0");
   });
 });

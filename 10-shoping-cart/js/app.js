@@ -63,12 +63,13 @@ function renderProduct(doiSo) {
       <div class="form-group">
         <div class="d-flex">
           <button class="btn btn-primary" onClick="minus(${product.id})"> - </button>
-          <input type="text" class="form-control mx-1" value="${product.quantity}" >
+          <input type="text" class="form-control mx-1" value="${product.quantity}">
           <button class="btn btn-primary" onClick="plus(${product.id})"> + </button>
         </div>
         <button class="btn btn-danger btn-block mt-1 btn-add-to-cart" onClick="addCart(${product.id})"><span>$</span><span>${product.priceInner}</span></button>
       </div>
-    </div>`;
+    </div>
+    `;
   });
 }
 renderProduct(products);
@@ -94,25 +95,25 @@ function renderCartProduct(doiSo) {
   let condition = doiSo.filter((c) => c.added === true);
   countInput.innerHTML = condition.length;
   condition.forEach((cart) => {
-    divListCart.innerHTML += `<tr >
+    divListCart.innerHTML += ` <tr >
     <td></td>
     <td>${cart.name}</td>
     <td>$${cart.price}</td>
     <td>
       <input type="number" id="cartProduct-${cart.id}" class="form-control" value="${cart.quantity}">
     </td>
-    <td><span class="fw-bold"><span>$</span>${cart.priceInner}</span></td>
+    <td><span class="fw-bold">$<span>${cart.priceInner}</span></td>
     <td>
       <button type="button" class="btn btn-link btn-sm btn-rounded" onClick="update(${cart.id})">Update</button>
       <button type="button" class="btn btn-link btn-sm btn-rounded" onClick="remove(${cart.id})">Delete</button>
     </td>
-  </tr>
-    `;
+  </tr>`;
   });
 }
 function addCart(id) {
   const item = products.find((cart) => cart.id == id);
   item.added = true;
+  updateTotalPrice();
   renderCartProduct(products);
 }
 function update(id) {
@@ -125,7 +126,7 @@ function update(id) {
   renderProduct(products);
 }
 function updateTotalPrice() {
-  const filterSave = products.filter((p) => p.added == true);
+  const filterSave = products.filter((cart) => cart.added == true);
   const saveARGU = filterSave.reduce((acc, curr) => {
     return acc + parseInt(curr.priceInner);
   }, 0);
